@@ -71,7 +71,8 @@ def delete_token(token_id):
 def create_token():
     print("creating organaization...\n")
     org_name = os.getenv("TEST_ORG")
-    subprocess.run(["docker", "exec", "-it", "influxdb", "influx", "org", "create", "--name", org_name, "-t", "my-super-secret-token"], text=True)
+    token_name = os.getenv("DOCKER_INFLUXDB_INIT_ADMIN_TOKEN")
+    subprocess.run(["docker", "exec", "-it", "influxdb", "influx", "org", "create", "--name", org_name, "-t", token_name], text=True)
     
     print("creating bucket...\n")
     bucket_name = os.getenv("TEST_BUCKET")
