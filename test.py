@@ -72,14 +72,14 @@ def create_token():
     print("creating organaization...\n")
     org_name = os.getenv("TEST_ORG")
     token_name = os.getenv("DOCKER_INFLUXDB_INIT_ADMIN_TOKEN")
-    subprocess.run(["docker", "exec", "-it", "influxdb", "influx", "org", "create", "--name", org_name, "-t", token_name], text=True)
+    subprocess.run(["docker", "exec", "-it", "influxdb", "influx", "org", "create", "--name", org_name, "-t", token_name], capture_output=True, text=True)
     
     print("creating bucket...\n")
     bucket_name = os.getenv("TEST_BUCKET")
-    subprocess.run(["docker", "exec", "-it", "influxdb", "influx", "bucket", "create", "--name", bucket_name, "--org", org_name], text=True)
+    subprocess.run(["docker", "exec", "-it", "influxdb", "influx", "bucket", "create", "--name", bucket_name, "--org", org_name], capture_output=True, text=True)
     
     print("creating new scoped token...\n")
-    subprocess.run(["docker", "exec", "-it", "influxdb", "influx", "auth", "create", "--org", org_name, "--all-access"], text=True)
+    subprocess.run(["docker", "exec", "-it", "influxdb", "influx", "auth", "create", "--org", org_name, "--all-access"], capture_output=True, text=True)
     
     print(f"saving result to {path_to_file}...\n")
     save_result()
