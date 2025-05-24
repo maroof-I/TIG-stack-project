@@ -1,6 +1,7 @@
 # TIG Stack
 
 A monitoring stack using **Telegraf** for collecting metrics, **InfluxDB** for storing time-series data, and **Grafana** for visualizing it.
+![Image](https://github.com/user-attachments/assets/ace62f77-d326-4326-9197-805c37eadefb)
 
 ## Components
 
