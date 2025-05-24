@@ -19,7 +19,7 @@ Grafana connects to InfluxDB and provides rich dashboards and visualizations.
 Clone the repository and start the stack with Docker Compose:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/maroof-I/TIG-stack-project.git
 cd TIG-stack-project
 docker compose up -d
 ```
@@ -27,6 +27,12 @@ docker compose up -d
 ## Python Setup
 
 This Python script is designed to automate the replacement of the InfluxDB operator token with a scoped token for an organization that has `--all-access` permission.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip3 install -r requirement.txt
+```
 
 ### Available Flags:
 
