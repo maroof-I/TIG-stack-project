@@ -49,7 +49,6 @@ def add_to_env_file(key, value):
 
 def updating_telegraf_conf(scoped_token):
     print("updating telegraf config...\n")
-    subprocess.run(["cp", "telegraf.conf", "telegraf.conf.original"], capture_output=True, text=True)
     with open(telegraf_path, "r+") as telegraf_conf_file:
         config = telegraf_conf_file.read()
         telegraf_conf_file.seek(0)
