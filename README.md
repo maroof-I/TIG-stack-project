@@ -45,3 +45,31 @@ After running the `--update-telegraf` flag and confirming the configuration chan
 ```bash
 docker compose restart telegraf
 ```
+
+## sample of .env file
+```bash
+# compose variables
+# InfluxDB Environment Variables
+DOCKER_INFLUXDB_INIT_MODE=setup
+DOCKER_INFLUXDB_INIT_USERNAME=admin
+DOCKER_INFLUXDB_INIT_PASSWORD=password
+DOCKER_INFLUXDB_INIT_ORG=org
+DOCKER_INFLUXDB_INIT_BUCKET=docker-host
+DOCKER_INFLUXDB_INIT_RETENTION=1w
+DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=super-token
+# Telegraf Environment Variables
+HOST_ETC=/hostfs/etc
+HOST_PROC=/hostfs/proc
+HOST_SYS=/hostfs/sys
+HOST_VAR=/hostfs/var
+HOST_RUN=/hostfs/run
+HOST_MOUNT_PREFIX=/hostfs
+# Grafana Environment Variables
+GF_SECURITY_ADMIN_USER=admin
+GF_SECURITY_ADMIN_PASSWORD=password
+
+
+# automation script variables
+TEST_ORG="test"
+TEST_BUCKET="test"
+```
