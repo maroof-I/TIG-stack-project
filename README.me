@@ -4,34 +4,43 @@ A monitoring stack using **Telegraf** for collecting metrics, **InfluxDB** for s
 
 ## Components
 
-- ### Telegraf: Telegraf collect s system metrics (CPU, memory, disk, etc.) and sends them to InfluxDB.
+### Telegraf
+Telegraf collects system metrics (CPU, memory, disk, etc.) and sends them to InfluxDB.
 
-- ### InfluxDB: InfluxDB stores time-series data efficiently and supports querying for Grafana.
+### InfluxDB
+InfluxDB stores time-series data efficiently and supports querying for Grafana.
 
-- ### Grafana: Grafana connects to InfluxDB and provides rich dashboards and visualizations.
+### Grafana
+Grafana connects to InfluxDB and provides rich dashboards and visualizations.
 
 ## Installation
 
+Clone the repository and start the stack with Docker Compose:
+
 ```bash
-git clone 
+git clone <your-repo-url>
 cd TIG-stack-project
 docker compose up -d
 ```
 
 ## Python Setup
-This python is mainly implemented to automate the replacement of operator token in influxdb with an scoped token for an org with --all-access permission.
-possible flags:
 
-- --list to list all tokens you have in influxdb.
-- --delete-id to delete a token by id, you can get the id from the --list arg. 
-- --create to create organisation and bucket named test, and generate a new scoped token.
-- --update-telegraf this will update the telegraf.conf file, you can run this after --create arg.
+This Python script is designed to automate the replacement of the InfluxDB operator token with a scoped token for an organization that has `--all-access` permission.
 
-NOTE: this python automation is not well performed, so make sure you have only two tokens in your --list
-the default and the new one created, as well as make sure your .env file have only one SCOPED_TOKEN entry.  
+### Available Flags:
 
-if you pass the --update-telegraf, check the configuration file changes, then you can run:
+- `--list` – List all tokens you have in InfluxDB.
+- `--delete-id` – Delete a token by ID (you can get the ID using the `--list` flag).
+- `--create` – Create an organization and a bucket named `test`, and generate a new scoped token.
+- `--update-telegraf` – Update the `telegraf.conf` file. Use this after running the `--create` flag.
+
+> **Note:**  
+> This Python automation is not yet fully robust. Please ensure:
+> - You only have two tokens listed with the `--list` flag: the default and the newly created one.
+> - Your `.env` file contains only one `SCOPED_TOKEN` entry.
+
+After running the `--update-telegraf` flag and confirming the configuration changes, restart Telegraf:
+
 ```bash
 docker compose restart telegraf
 ```
-
